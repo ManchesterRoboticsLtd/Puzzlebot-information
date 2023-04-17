@@ -1,0 +1,39 @@
+#######################################
+# Syntax Coloring Map List
+#######################################
+
+
+#######################################
+# Constants (LITERAL1)
+#######################################
+
+#######################################
+# Datatypes (KEYWORD1)
+#######################################
+
+
+#######################################
+# Methods and Functions (KEYWORD2)
+#######################################
+MotorDriver	KEYWORD2
+SetSign		KEYWORD2
+SetBaseFreq	KEYWORD2
+DriverSetup	KEYWORD2
+MotorWrite	KEYWORD2
+DriverSetup	KEYWORD2
+MotorWrite	KEYWORD2
+
+Encoder		KEYWORD2
+Encoder_setup	KEYWORD2
+ReadSensors	KEYWORD2
+SetTicksPerRev	KEYWORD2
+SetGearRatio	KEYWORD2
+SetSign		KEYWORD2
+Get_Speed	KEYWORD2
+
+PIDController	KEYWORD2
+SetParameters	KEYWORD2
+GetControl	KEYWORD2
+SetControlLimits	KEYWORD2
+SetControlZero	KEYWORD2
+SetDeadZone	KEYWORD2

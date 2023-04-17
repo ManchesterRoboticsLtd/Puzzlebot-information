@@ -29,23 +29,11 @@
 
 # Introduction
 
-WELCOME TO PUZZLEBOT! BEFORE YOU START MAKING ROBOTICS, YOU’LL NEED TO KNOW SOME BASIC FUNCTIONALITIES OF THE ROBOT.
-
-* Puzzlebot by Manchester Robotics is a platform for robotics and control systems development and education.
-
-* Unlike other products, Puzzlebot has sufficient processing capacity to handle multiple advanced add-on components (e.g. different actuators and sensors such as sonar LiDAR, and line following sensors).
-
-* Allows customers to use a consistent platform for their entire robotics learning journey from starter kit tutorials all the way to professional prototyping.
-
-* The “brain” of Puzzlebot is the Hackerboard. The board acts as a robust computational node for Starter Kit components (e.g. motors) and a communication interface to external computing units (laptops, phones, NVIDIA Jetson Nano, etc.).
-
    
-## General Information
-  * The Puzzlebot Starter Kit contains all the essential components needed to quickly access meaningful robotics capabilities (i.e. a programmable, roaming robot)and       provides a user-friendly platform for incorporating a wide range of advanced add-on feature sets.
+## Latest Hackerboard Binaries
+  * Use the latest hackerboard Binaries in the folder *MCR2_Hackerboard_Binaries*
 
-## Recordings
+## NVIDIA Jetson Nano Image
+ * Download the NVIDIA Jetson Nano Image [here](https://manchesterrobotics-my.sharepoint.com/personal/rebeca_manchester-robotics_com/_layouts/15/onedrive.aspx?id=%2Fpersonal%2Frebeca%5Fmanchester%2Drobotics%5Fcom%2FDocuments%2Fpuzzlebot%2D003%2Dnano%2D2gb%2Djp46%2Ezip&parent=%2Fpersonal%2Frebeca%5Fmanchester%2Drobotics%5Fcom%2FDocuments&ga=1)
+ * Use the Balena Etcher to flash the image [here](https://www.balena.io/etcher)
      
-## General Requirements
-
-
-

@@ -48,10 +48,6 @@
   * Download the MCR2 Puzzlebot Libraries in the folder *MCR2_PuzzlebotLib*
   * Install the libraries as shown [here](https://docs.arduino.cc/software/ide-v1/tutorials/installing-libraries)
   * Restart Arduino IDE
-  * Look at the examples provided in the puzzlebot libraries *File > Examples > MCR2_PuzzlebotLib*
+  * Follow the steps on the file *MCR2_Standalone_Programming.pdf* to compile and upload the files.
   
- <picture>
-  <source srcset="https://user-images.githubusercontent.com/67285979/232532338-af9745eb-ba6d-4886-970b-39d6047152ee.png">
-  <img alt="Shows Puzzlebot views in black or white." width="450" align="left">
-</picture>
-  
+

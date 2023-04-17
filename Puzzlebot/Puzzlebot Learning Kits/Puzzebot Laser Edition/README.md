@@ -27,25 +27,10 @@
 
 ---
 
-# Introduction
+# Under Construction
 
-WELCOME TO PUZZLEBOT! BEFORE YOU START MAKING ROBOTICS, YOU’LL NEED TO KNOW SOME BASIC FUNCTIONALITIES OF THE ROBOT.
+![image](https://user-images.githubusercontent.com/67285979/232604782-cb4a6596-9a2a-4826-996f-a59ef20a5036.png)
 
-* Puzzlebot by Manchester Robotics is a platform for robotics and control systems development and education.
-
-* Unlike other products, Puzzlebot has sufficient processing capacity to handle multiple advanced add-on components (e.g. different actuators and sensors such as sonar LiDAR, and line following sensors).
-
-* Allows customers to use a consistent platform for their entire robotics learning journey from starter kit tutorials all the way to professional prototyping.
-
-* The “brain” of Puzzlebot is the Hackerboard. The board acts as a robust computational node for Starter Kit components (e.g. motors) and a communication interface to external computing units (laptops, phones, NVIDIA Jetson Nano, etc.).
-
-   
-## General Information
-  * The Puzzlebot Starter Kit contains all the essential components needed to quickly access meaningful robotics capabilities (i.e. a programmable, roaming robot)and       provides a user-friendly platform for incorporating a wide range of advanced add-on feature sets.
-
-## Recordings
-     
-## General Requirements
 
 
 

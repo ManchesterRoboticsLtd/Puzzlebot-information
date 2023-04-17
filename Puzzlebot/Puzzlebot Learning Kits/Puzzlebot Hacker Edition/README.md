@@ -56,13 +56,10 @@ Puzzlebot, is powered by the *Hackerboard* for algorithms which require real-tim
 </picture>
    
 ## Configurations
-  * The Puzzlebot can be used in differen configuration according to the user requirments.
- <br/><br/>
+  * The Puzzlebot Hacker Edition, can be used in differen configuration according to the user requirments.
+     * Puzzlebot Standalone Configuration
+     * Puzzlebot External Control Configuration
 
-
- 
-  <br/><br/>
-  
 
 
 

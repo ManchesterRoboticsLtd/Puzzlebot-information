@@ -54,8 +54,8 @@
 WELCOME TO PUZZLEBOT! BEFORE YOU START MAKING ROBOTICS, YOU’LL NEED TO KNOW SOME BASIC FUNCTIONALITIES OF THE ROBOT.
 
 <picture>
-  <source srcset="https://user-images.githubusercontent.com/67285979/232479785-6d5167af-44a1-4477-86fd-2a78dc56167f.png">
-  <img alt="Shows Puzzlebot views in black or white." width="600" align="right">
+  <source srcset="https://user-images.githubusercontent.com/67285979/232486583-00aa7c19-8d00-45bd-9055-226d13b40b01.png">
+  <img alt="Shows Puzzlebot views in black or white." width="500" align="right">
 </picture>
 
   * The Puzzlebot Kits contain all the neccessary components needed to quickly access meaningful robotics capabilities (i.e. a programmable, roaming robot)and       provides a user-friendly platform for incorporating a wide range of advanced add-on feature sets.
@@ -63,6 +63,7 @@ WELCOME TO PUZZLEBOT! BEFORE YOU START MAKING ROBOTICS, YOU’LL NEED TO KNOW SO
   * Each kit has different capabilities and configurations, according to the user needs.
   * The basic kit is called *Hacker Kit* the rest of the kits "grow" in complexity, always keeping *Hacker Kit* as a base.
   
+<br/><br/>  
 ## Puzzlebot Learning Kits
   ### Puzzlebot Hacker Edition
   - The Puzzlebot Hacker Edition contains all the essential components needed to quickly access meaningful robotics capabilities and provides a user-friendly platform for incorporating a wide range of advanced add-on feature-sets.

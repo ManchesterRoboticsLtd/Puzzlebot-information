@@ -71,6 +71,8 @@ Puzzlebot, is powered by the *Hackerboard* for algorithms which require real-tim
   * 3rd Party peripherals can be attached.
   * The user can develop low level control libraries, using MCR2 libraries or add/develop its own libraries.
   
+  <br/><br/>  
+  
  # Instructions
   * To use the Puzzlebot in this configuration, follow the instructions on how to Download and install the Arduino IDE [here]()
   * Download and configure the drivers for the ESP32 microcontroller [here]()

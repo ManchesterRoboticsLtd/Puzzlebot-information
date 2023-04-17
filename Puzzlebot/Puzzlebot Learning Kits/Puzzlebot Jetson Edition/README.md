@@ -82,21 +82,67 @@ The Puzzlebot NVIDIA JETSON® Edition works by communicating the Hacker Board (P
   * Connect to the AP of the Hackerboard 
 
   *	Open any web browser
-  
-  ![image](https://user-images.githubusercontent.com/67285979/232574285-d4d5a6a5-0df9-43c8-a4ef-f2f7ef97af0b.png)
-  
+
+  <p align="center" >
+  <img src="https://user-images.githubusercontent.com/67285979/232574285-d4d5a6a5-0df9-43c8-a4ef-f2f7ef97af0b.png"  width="200"/>
+  </p>
+    
   * Type in the search bar (address bar) the IP Address of the robot as displayed on the LCD screen.
-  ![image](https://user-images.githubusercontent.com/67285979/232574380-db697767-4d95-4468-b4c9-b83883a88e0e.png)
+  <p align="center" >
+  <img src="https://user-images.githubusercontent.com/67285979/232574380-db697767-4d95-4468-b4c9-b83883a88e0e.png"  width="500"/>
+  </p>
 
   * The following webpage should appear. 
-
-
-### Hackerboard-Jetson Connection
-<picture>
-  <source srcset="https://user-images.githubusercontent.com/67285979/232567615-2c5bc3eb-e559-489a-97d1-c1a2513da436.png">
-  <img alt="Shows MCR2 logo in black or white." width="350" align="right">
-</picture>
+  <p align="center" >
+  <img src="https://user-images.githubusercontent.com/67285979/232581339-03e1545d-a330-47b5-9a02-2ec6314e16dd.png"  width="500"/>
+  </p>
   
-* Connect the Hackerboard using the included USB-microUSB cable.
-  * If using another cable make sure is a Data-Cable not a Power-Cable
+  * Make sure the ROS Checkbox is selected and select the type of control for your robot (The ROS topic will change accordingly).
+      * Robot Velocitites (Activates the internal PID control for the linear and angular velocities of the robot)
+      * Wheel Velocitites (Activates the internal PID control for the independent angular speed of the wheels)
+      * Motor PWM (Directly input the PWM value [-1,1] to the motor driver)
+  * Press the "Save" button for each selection
+  <p align="center" >
+  <img src="https://user-images.githubusercontent.com/67285979/232582025-a5180e7a-586f-4d22-a850-845de9e612af.png"  width="500"/>
+  </p>
+  
+  4. Configure the Jetson (in case you have multiple robots at once) as shown in the presentation *Jetson Setup.pdf*
+  
+  5. Connect the Hackerboard using the included USB-microUSB cable.
+      * If using another cable make sure is a Data-Cable not a Power-Cable
+
+  <p align="center" >
+  <img src="https://user-images.githubusercontent.com/67285979/232567615-2c5bc3eb-e559-489a-97d1-c1a2513da436.png"  width="350"/>
+  </p>
+  
+  6. Connect the Jetson to a screen, mouse, and keyboard.
+  7. Ensure the Hacker Board is connected to the battery using the power cable and booted.
+  8. Connect the USB-C port of the Jetson to a battery pack (can be the same as the hackerboard)
+    - Other USB power sources work but the Jetson draws up to 3A of current and may crash if the power supply cannot provide this
+  9. Once the Jetson has booted, you should see the Jetson Desktop.
+
+  <p align="center" >
+  <img src="https://user-images.githubusercontent.com/67285979/232599153-740b3dd7-03db-45f9-abba-cea1a0f67595.png"  width="350"/>
+  </p>
+  
+### Hackerboard Communication Routines
+* The Hacker Board communication starts each time the Jetson is booted up
+* To test the communication, use rostopic list. You should see  list of topics as shown, although this will depend which control mode the Hacker Board is using. 
+* If the communication fails, the protocol can be restarted with the command:
+  ```sudo systemctl restart puzzlebot.service ```
+  
+### Testing Routines
+* Test the ROS communication with rostopic echo
+* Echo the topics /wr and /wl, and rotate the wheels
+* The speed of the wheels should be displayed
+
+* Publish to the command topics defined on the Hackerboard web interface, the wheels should turn
+  - If Robot Velocitites mode is used, publish to /cmd_vel
+  - If Wheel Velocitites is used, publish to /cmd_wR and /cmd_wL
+  - If Motor PWM is used, publish to /cmd_pwmR and /cmd_pwmL
+
+### Remote access
+* To control the robot remotely, follow the steps in the presentation.
+* Do the Teleoperation activity.
+
 

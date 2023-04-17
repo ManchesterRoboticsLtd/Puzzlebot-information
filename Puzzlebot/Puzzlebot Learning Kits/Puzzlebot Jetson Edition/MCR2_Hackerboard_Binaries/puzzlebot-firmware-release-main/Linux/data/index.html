@@ -1,0 +1,966 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Robot Parameters</title>
+
+<style>
+table {
+  border: 2px solid black;
+  border-collapse: collapse;
+}
+th,td{
+  border: 2px solid black;
+  padding: 5px;
+  max-width: 100%
+}
+{
+	box-sizing: border-box;
+}
+/* Set additional styling options for the columns*/
+.flex-container{
+	display:flex;
+	flex-flow: row wrap;
+	justify-content: center;
+	align-items: center;
+}
+.flex-child{
+	flex: 1 0 26%;
+	order: 2;
+	margin: 5px;
+}
+.hidden {
+	display:none;
+}
+.button_cell:hover{
+	background: #008CBA;
+}
+#loader {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  z-index: 1;
+  width: 120px;
+  height: 120px;
+  margin: -76px 0 0 -76px;
+  border: 16px solid #f3f3f3;
+  border-radius: 50%;
+  border-top: 16px solid #3498db;
+  -webkit-animation: spin 2s linear infinite;
+  animation: spin 2s linear infinite;
+}
+
+@-webkit-keyframes spin {
+  0% { -webkit-transform: rotate(0deg); }
+  100% { -webkit-transform: rotate(360deg); }
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* The switch - the box around the slider */
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+}
+
+/* Hide default HTML checkbox */
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+/* The slider */
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+input:checked + .slider {
+  background-color: #2196F3;
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px #2196F3;
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(26px);
+}
+
+/* Rounded sliders */
+.slider.round {
+  border-radius: 34px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
+
+.tooltip {
+  position: relative;
+  display: inline-block;
+}
+
+.tooltip .tooltiptext {
+  visibility: hidden;
+  width: 200px;
+  background-color: black;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px 0;
+  position: absolute;
+  z-index: 1;
+  top: 150%;
+  left: 50%;
+  margin-left: -100px;
+}
+
+.tooltip .tooltiptext::after {
+  content: "";
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  margin-left: -5px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: transparent transparent black transparent;
+}
+
+.tooltip:hover .tooltiptext {
+  visibility: visible;
+}
+
+</style>
+</style>
+
+<script>
+
+var vel_right = 0;
+var vel_left = 0;
+
+<!-- Gauge Code Starts -->
+var Gauge=function(b)
+{
+  function l(a,b)
+  { 
+    for(var c in b)
+      "object"==typeof b[c]&&"[object Array]"!==Object.prototype.toString.call(b[c])&&"renderTo"!=c?("object"!=typeof a[c]&&(a[c]={}),l(a[c],b[c])):a[c]=b[c]}function q()  {z.width=b.width;z.height=b.height;A=z.cloneNode(!0);B=A.getContext("2d");C=z.width;D=z.height;t=C/2;u=D/2;f=t<u?t:u;A.i8d=!1;B.translate(t,u);B.save();a.translate(t,u);a.save()}function v(a){var b=new Date;G=setInterval(function(){var c=(new Date-b)/a.duration;1<c&&(c=1);var f=("function"==
+typeof a.delta?a.delta:M[a.delta])(c);a.step(f);1==c&&clearInterval(G)},a.delay||10)}function k(){G&&clearInterval(G);var a=I-n,h=n,c=b.animation;v({delay:c.delay,duration:c.duration,delta:c.fn,step:function(b){n=parseFloat(h)+a*b;E.draw()}})}function e(a){return a*Math.PI/180}function g(b,h,c){c=a.createLinearGradient(0,0,0,c);c.addColorStop(0,b);c.addColorStop(1,h);return c}function p(){var m=93*(f/100),h=f-m,c=91*(f/100),e=88*(f/100),d=85*(f/100);a.save();b.glow&&(a.shadowBlur=h,a.shadowColor=
+"rgba(0, 0, 0, 0.5)");a.beginPath();a.arc(0,0,m,0,2*Math.PI,!0);a.fillStyle=g("#ddd","#aaa",m);a.fill();a.restore();a.beginPath();a.arc(0,0,c,0,2*Math.PI,!0);a.fillStyle=g("#fafafa","#ccc",c);a.fill();a.beginPath();a.arc(0,0,e,0,2*Math.PI,!0);a.fillStyle=g("#eee","#f0f0f0",e);a.fill();a.beginPath();a.arc(0,0,d,0,2*Math.PI,!0);a.fillStyle=b.colors.plate;a.fill();a.save()}function w(a){var h=!1;a=0===b.majorTicksFormat.dec?Math.round(a).toString():a.toFixed(b.majorTicksFormat.dec);return 1<b.majorTicksFormat["int"]?
+(h=-1<a.indexOf("."),-1<a.indexOf("-")?"-"+(b.majorTicksFormat["int"]+b.majorTicksFormat.dec+2+(h?1:0)-a.length)+a.replace("-",""):""+(b.majorTicksFormat["int"]+b.majorTicksFormat.dec+1+(h?1:0)-a.length)+a):a}function d(){var m=81*(f/100);a.lineWidth=2;a.strokeStyle=b.colors.majorTicks;a.save();if(0===b.majorTicks.length){for(var h=(b.maxValue-b.minValue)/5,c=0;5>c;c++)b.majorTicks.push(w(b.minValue+h*c));b.majorTicks.push(w(b.maxValue))}for(c=0;c<b.majorTicks.length;++c)a.rotate(e(45+c*(270/(b.majorTicks.length-
+1)))),a.beginPath(),a.moveTo(0,m),a.lineTo(0,m-15*(f/100)),a.stroke(),a.restore(),a.save();b.strokeTicks&&(a.rotate(e(90)),a.beginPath(),a.arc(0,0,m,e(45),e(315),!1),a.stroke(),a.restore(),a.save())}function J(){var m=81*(f/100);a.lineWidth=1;a.strokeStyle=b.colors.minorTicks;a.save();for(var h=b.minorTicks*(b.majorTicks.length-1),c=0;c<h;++c)a.rotate(e(45+c*(270/h))),a.beginPath(),a.moveTo(0,m),a.lineTo(0,m-7.5*(f/100)),a.stroke(),a.restore(),a.save()}function s(){for(var m=55*(f/100),h=0;h<b.majorTicks.length;++h){var c=
+F(m,e(45+h*(270/(b.majorTicks.length-1))));a.font=20*(f/200)+"px Arial";a.fillStyle=b.colors.numbers;a.lineWidth=0;a.textAlign="center";a.fillText(b.majorTicks[h],c.x,c.y+3)}}function x(a){var h=b.valueFormat.dec,c=b.valueFormat["int"];a=parseFloat(a);var f=0>a;a=Math.abs(a);if(0<h){a=a.toFixed(h).toString().split(".");h=0;for(c-=a[0].length;h<c;++h)a[0]=a[0];a=(f?"-":"")+a[0]+"."+a[1]}else{a=Math.round(a).toString();h=0;for(c-=a.length;h<c;++h)a="0"+a;a=(f?"-":"")+a}return a}function F(a,b){var c=
+Math.sin(b),f=Math.cos(b);return{x:0*f-a*c,y:0*c+a*f}}function N(){a.save();for(var m=81*(f/100),h=m-15*(f/100),c=0,g=b.highlights.length;c<g;c++){var d=b.highlights[c],r=(b.maxValue-b.minValue)/270,k=e(45+(d.from-b.minValue)/r),r=e(45+(d.to-b.minValue)/r);a.beginPath();a.rotate(e(90));a.arc(0,0,m,k,r,!1);a.restore();a.save();var l=F(h,k),p=F(m,k);a.moveTo(l.x,l.y);a.lineTo(p.x,p.y);var p=F(m,r),n=F(h,r);a.lineTo(p.x,p.y);a.lineTo(n.x,n.y);a.lineTo(l.x,l.y);a.closePath();a.fillStyle=d.color;a.fill();
+a.beginPath();a.rotate(e(90));a.arc(0,0,h,k-0.2,r+0.2,!1);a.restore();a.closePath();a.fillStyle=b.colors.plate;a.fill();a.save()}}function K(){var m=12*(f/100),h=8*(f/100),c=77*(f/100),d=20*(f/100),k=4*(f/100),r=2*(f/100),l=function(){a.shadowOffsetX=2;a.shadowOffsetY=2;a.shadowBlur=10;a.shadowColor="rgba(188, 143, 143, 0.45)"};l();a.save();n=0>n?Math.abs(b.minValue-n):0<b.minValue?n-b.minValue:Math.abs(b.minValue)+n;a.rotate(e(45+n/((b.maxValue-b.minValue)/270)));a.beginPath();a.moveTo(-r,-d);a.lineTo(-k,
+0);a.lineTo(-1,c);a.lineTo(1,c);a.lineTo(k,0);a.lineTo(r,-d);a.closePath();a.fillStyle=g(b.colors.needle.start,b.colors.needle.end,c-d);a.fill();a.beginPath();a.lineTo(-0.5,c);a.lineTo(-1,c);a.lineTo(-k,0);a.lineTo(-r,-d);a.lineTo(r/2-2,-d);a.closePath();a.fillStyle="rgba(255, 255, 255, 0.2)";a.fill();a.restore();l();a.beginPath();a.arc(0,0,m,0,2*Math.PI,!0);a.fillStyle=g("#f0f0f0","#ccc",m);a.fill();a.restore();a.beginPath();a.arc(0,0,h,0,2*Math.PI,!0);a.fillStyle=g("#e8e8e8","#f5f5f5",h);a.fill()}
+function L(){a.save();a.font=40*(f/200)+"px Led";var b=x(y),h=a.measureText("-"+x(0)).width,c=f-33*(f/100),g=0.12*f;a.save();var d=-h/2-0.025*f,e=c-g-0.04*f,h=h+0.05*f,g=g+0.07*f,k=0.025*f;a.beginPath();a.moveTo(d+k,e);a.lineTo(d+h-k,e);a.quadraticCurveTo(d+h,e,d+h,e+k);a.lineTo(d+h,e+g-k);a.quadraticCurveTo(d+h,e+g,d+h-k,e+g);a.lineTo(d+k,e+g);a.quadraticCurveTo(d,e+g,d,e+g-k);a.lineTo(d,e+k);a.quadraticCurveTo(d,e,d+k,e);a.closePath();d=a.createRadialGradient(0,c-0.12*f-0.025*f+(0.12*f+0.045*f)/
+2,f/10,0,c-0.12*f-0.025*f+(0.12*f+0.045*f)/2,f/5);d.addColorStop(0,"#888");d.addColorStop(1,"#666");a.strokeStyle=d;a.lineWidth=0.05*f;a.stroke();a.shadowBlur=0.012*f;a.shadowColor="rgba(0, 0, 0, 1)";a.fillStyle="#babab2";a.fill();a.restore();a.shadowOffsetX=0.004*f;a.shadowOffsetY=0.004*f;a.shadowBlur=0.012*f;a.shadowColor="rgba(0, 0, 0, 0.3)";a.fillStyle="#444";a.textAlign="center";a.fillText(b,0,c);a.restore()}Gauge.Collection.push(this);this.config={renderTo:null,width:200,height:200,title:!1,
+maxValue:100,minValue:0,majorTicks:[],minorTicks:10,strokeTicks:!0,units:!1,valueFormat:{"int":3,dec:2},majorTicksFormat:{"int":1,dec:0},glow:!0,animation:{delay:10,duration:25,fn:"cycle"},colors:{plate:"#fff",majorTicks:"#444",minorTicks:"#666",title:"#888",units:"#888",numbers:"#444",needle:{start:"rgba(240, 128, 128, 1)",end:"rgba(255, 160, 122, .9)"}},highlights:[{from:20,to:60,color:"#eee"},{from:60,to:80,color:"#ccc"},{from:80,to:100,color:"#999"}]};var y=0,E=this,n=0,I=0,H=!1;this.setValue=
+function(a){n=b.animation?y:a;var d=(b.maxValue-b.minValue)/100;I=a>b.maxValue?b.maxValue+d:a<b.minValue?b.minValue-d:a;y=a;b.animation?k():this.draw();return this};this.setRawValue=function(a){n=y=a;this.draw();return this};this.clear=function(){y=n=I=this.config.minValue;this.draw();return this};this.getValue=function(){return y};this.onready=function(){};l(this.config,b);this.config.minValue=parseFloat(this.config.minValue);this.config.maxValue=parseFloat(this.config.maxValue);b=this.config;n=
+y=b.minValue;if(!b.renderTo)throw Error("Canvas element was not specified when creating the Gauge object!");var z=b.renderTo.tagName?b.renderTo:document.getElementById(b.renderTo),a=z.getContext("2d"),A,C,D,t,u,f,B;q();this.updateConfig=function(a){l(this.config,a);q();this.draw();return this};var M={linear:function(a){return a},quad:function(a){return Math.pow(a,2)},quint:function(a){return Math.pow(a,5)},cycle:function(a){return 1-Math.sin(Math.acos(a))},bounce:function(a){a:{a=1-a;for(var b=0,
+c=1;;b+=c,c/=2)if(a>=(7-4*b)/11){a=-Math.pow((11-6*b-11*a)/4,2)+Math.pow(c,2);break a}a=void 0}return 1-a},elastic:function(a){a=1-a;return 1-Math.pow(2,10*(a-1))*Math.cos(30*Math.PI/3*a)}},G=null;a.lineCap="round";this.draw=function(){if(!A.i8d){B.clearRect(-t,-u,C,D);B.save();var g={ctx:a};a=B;p();N();J();d();s();b.title&&(a.save(),a.font=24*(f/200)+"px Arial",a.fillStyle=b.colors.title,a.textAlign="center",a.fillText(b.title,0,-f/4.25),a.restore());b.units&&(a.save(),a.font=22*(f/200)+"px Arial",
+a.fillStyle=b.colors.units,a.textAlign="center",a.fillText(b.units,0,f/3.25),a.restore());A.i8d=!0;a=g.ctx;delete g.ctx}a.clearRect(-t,-u,C,D);a.save();a.drawImage(A,-t,-u,C,D);if(Gauge.initialized)L(),K(),H||(E.onready&&E.onready(),H=!0);else var e=setInterval(function(){Gauge.initialized&&(clearInterval(e),L(),K(),H||(E.onready&&E.onready(),H=!0))},10);return this}};Gauge.initialized=!1;
+(function(){var b=document,l=b.getElementsByTagName("head")[0],q=-1!=navigator.userAgent.toLocaleLowerCase().indexOf("msie"),v="@font-face {font-family: 'Led';src: url('fonts/digital-7-mono."+(q?"eot":"ttf")+"');}",k=b.createElement("style");k.type="text/css";if(q)l.appendChild(k),l=k.styleSheet,l.cssText=v;else{try{k.appendChild(b.createTextNode(v))}catch(e){k.cssText=v}l.appendChild(k);l=k.styleSheet?k.styleSheet:k.sheet||b.styleSheets[b.styleSheets.length-1]}var g=setInterval(function(){if(b.body){clearInterval(g);
+var e=b.createElement("div");e.style.fontFamily="Led";e.style.position="absolute";e.style.height=e.style.width=0;e.style.overflow="hidden";e.innerHTML=".";b.body.appendChild(e);setTimeout(function(){Gauge.initialized=!0;e.parentNode.removeChild(e)},250)}},1)})();Gauge.Collection=[];
+Gauge.Collection.get=function(b){if("string"==typeof b)for(var l=0,q=this.length;l<q;l++){if((this[l].config.renderTo.tagName?this[l].config.renderTo:document.getElementById(this[l].config.renderTo)).getAttribute("id")==b)return this[l]}else return"number"==typeof b?this[b]:null};function domReady(b){window.addEventListener?window.addEventListener("DOMContentLoaded",b,!1):window.attachEvent("onload",b)}
+domReady(function(){function b(b){for(var e=b[0],d=1,g=b.length;d<g;d++)e+=b[d].substr(0,1).toUpperCase()+b[d].substr(1,b[d].length-1);return e}for(var l=document.getElementsByTagName("canvas"),q=0,v=l.length;q<v;q++)if("canv-gauge"==l[q].getAttribute("data-type")){var k=l[q],e={},g,p=parseInt(k.getAttribute("width"),10),w=parseInt(k.getAttribute("height"),10);e.renderTo=k;p&&(e.width=p);w&&(e.height=w);p=0;for(w=k.attributes.length;p<w;p++)if(g=k.attributes.item(p).nodeName,"data-type"!=g&&"data-"==
+g.substr(0,5)){var d=g.substr(5,g.length-5).toLowerCase().split("-");if(g=k.getAttribute(g))switch(d[0]){case "colors":d[1]&&(e.colors||(e.colors={}),"needle"==d[1]?(d=g.split(/\s+/),e.colors.needle=d[0]&&d[1]?{start:d[0],end:d[1]}:g):(d.shift(),e.colors[b(d)]=g));break;case "highlights":e.highlights||(e.highlights=[]);g=g.match(/(?:(?:-?\d*\.)?(-?\d+){1,2} ){2}(?:(?:#|0x)?(?:[0-9A-F|a-f]){3,8}|rgba?\(.*?\))/g);for(var d=0,J=g.length;d<J;d++){var s=g[d].replace(/^\s+|\s+$/g,"").split(/\s+/),x={};
+s[0]&&""!=s[0]&&(x.from=s[0]);s[1]&&""!=s[1]&&(x.to=s[1]);s[2]&&""!=s[2]&&(x.color=s[2]);e.highlights.push(x)}break;case "animation":d[1]&&(e.animation||(e.animation={}),"fn"==d[1]&&/^\s*function\s*\(/.test(g)&&(g=eval("("+g+")")),e.animation[d[1]]=g);break;default:d=b(d);if("onready"==d)continue;if("majorTicks"==d)g=g.split(/\s+/);else if("strokeTicks"==d||"glow"==d)g="true"==g?!0:!1;else if("valueFormat"==d)if(g=g.split("."),2==g.length)g={"int":parseInt(g[0],10),dec:parseInt(g[1],10)};else continue;
+e[d]=g}}e=new Gauge(e);k.getAttribute("data-value")&&e.setRawValue(parseFloat(k.getAttribute("data-value")));k.getAttribute("data-onready")&&(e.onready=function(){eval(this.config.renderTo.getAttribute("data-onready"))});e.draw()}});
+
+window.Gauge=Gauge;
+	<!-- Gauge Code Ends -->
+	/** \file index.html */
+			/** \brief Processes the input data received from server
+			*   The function is updated every 400 ms
+			*/
+	var timer_dc,timer_inputs;
+	var connected;
+	function GetInputs()
+	{
+		//ShowHide();
+		var request = new XMLHttpRequest();
+		request.onreadystatechange = function()
+		{
+			if (this.readyState == 4) 
+			{
+				if (this.status == 200) 
+				{
+					if (this.responseXML != null) 
+					{
+						vel_right = this.responseXML.getElementsByTagName('velocity')[0].childNodes[0].nodeValue;
+						vel_left = this.responseXML.getElementsByTagName('velocity')[1].childNodes[0].nodeValue;
+
+						document.getElementById("sonar").innerHTML = "Sonar Distance: " + this.responseXML.getElementsByTagName('sonar')[0].childNodes[0].nodeValue + " m";
+						document.getElementById("laser").innerHTML = "Laser Distance: " + this.responseXML.getElementsByTagName('laser')[0].childNodes[0].nodeValue + " m";
+						document.getElementById("line").innerHTML = "Line Position: " + this.responseXML.getElementsByTagName('reflect')[0].childNodes[0].nodeValue;
+						document.getElementById("min_values").innerHTML = "Sensor Min Average:" + this.responseXML.getElementsByTagName('reflect')[1].childNodes[0].nodeValue;
+						n_sensors = this.responseXML.getElementsByTagName('reflect')[2].childNodes[0].nodeValue;
+						var str = "Raw values: ";
+						for(var i=0;i<n_sensors;i++)
+						  str = str + this.responseXML.getElementsByTagName('reflect')[3+i].childNodes[0].nodeValue + "  ";
+						document.getElementById("raw_values").innerHTML = str;
+						Connected();
+						clearTimeout(timer_dc);
+						timer_dc = setTimeout('Disconnected()',5000);
+					}
+				}
+			}
+		}
+		request.open("GET", "/velocity", true);
+		request.send(null);
+		timer_inputs = setTimeout('GetInputs()', 400);          
+	}
+	function SetVelocities() 
+	{
+		var formData = new FormData();
+		formData.append("set_velocity_right",document.getElementById("SET_VEL_RIGHT").value);
+		formData.append("set_velocity_left",document.getElementById("SET_VEL_LEFT").value);
+
+		var xhttp = new XMLHttpRequest();
+		xhttp.open("POST", "/velocity_set", true);
+		xhttp.send(formData);
+	}
+	function ZeroVelocities(){
+		var formData = new FormData();
+		formData.append("set_velocity_right","0");
+		formData.append("set_velocity_left","0");
+
+		var xhttp = new XMLHttpRequest();
+		xhttp.open("POST", "/velocity_set", true);
+		xhttp.send(formData);
+	}
+	function SubmitServo() 
+	{
+		var formData = new FormData();
+		formData.append("servo_ang",document.getElementById("SET_SERVO_ANGLE").value);                      
+
+		var xhttp = new XMLHttpRequest();
+		xhttp.open("POST", "/servo_angle", true);
+		xhttp.send(formData);
+	}
+	function SaveServoOffset() 
+	{
+		ZeroVelocities();
+		var formData = new FormData();          
+		formData.append("servo_off",document.getElementById("SET_SERVO_OFFSET").value);            
+
+		var xhttp = new XMLHttpRequest();
+		xhttp.open("POST", "/servo_offset", true);
+		xhttp.send(formData);
+		setTimeout('Restart()',500);
+	}	
+	function ShowHide(){
+		if(document.getElementById("SERVO_ON").checked == true || document.getElementById("SONAR_ON").checked == true || document.getElementById("LASER_ON").checked == true){
+			document.getElementById("SONAR_SERVO_TABLE").style.display = "flex";
+		}else{
+			document.getElementById("SONAR_SERVO_TABLE").style.display = "none";
+		}
+		if(document.getElementById("SERVO_ON").checked == true){
+			document.getElementById("SERVO_TABLE").style.visibility = "visible";
+		}else{
+			document.getElementById("SERVO_TABLE").style.visibility = "collapse";
+		}
+		
+		if(document.getElementById("SONAR_ON").checked == true){
+			document.getElementById("SONAR_TABLE").style.visibility = "visible";
+		}else{
+			document.getElementById("SONAR_TABLE").style.visibility = "collapse";
+		}
+		
+		if(document.getElementById("LASER_ON").checked == true){
+			document.getElementById("LASER_TABLE").style.visibility = "visible";
+		}else{
+			document.getElementById("LASER_TABLE").style.visibility = "collapse";
+		}
+		
+		if(document.getElementById("REFLECT_ON").checked == true){
+			document.getElementById("REFLECT_TABLE").style.display = "flex";
+		}else{
+			document.getElementById("REFLECT_TABLE").style.display = "none";
+		}
+		
+		wheel_keyb_rows = document.getElementsByClassName("WHEEL_KEYB_CONTROLS");
+		robot_keyb_rows = document.getElementsByClassName("ROBOT_KEYB_CONTROLS");
+		wheel_rows = document.getElementsByClassName("WHEEL_CONTROLS");
+		robot_rows = document.getElementsByClassName("ROBOT_CONTROLS");
+		//keyb_cells = document.getElementsByClassName("WHEEL_KEYB_CONTROLS_CELL");
+		//headers = document.getElementsByClassName("CONTROLS_HEADER");
+		
+		if(document.getElementById("ENABLE_KEYBOARD").checked == true){
+			//for(var i=0;i<headers.length;i++)
+			//	headers[i].colSpan = "4";
+			for(var i=0;i<wheel_rows.length;i++)
+				wheel_rows[i].style.visibility = "collapse";
+			for(var i=0;i<robot_rows.length;i++)
+				robot_rows[i].style.visibility = "collapse";
+				
+			if(document.getElementById("CONTROL_INPUT").value == 1){
+				for(var i=0;i<wheel_keyb_rows.length;i++)
+					wheel_keyb_rows[i].style.visibility = "collapse";
+				for(var i=0;i<robot_keyb_rows.length;i++)
+					robot_keyb_rows[i].style.visibility = "visible";
+			}	
+			else{
+				for(var i=0;i<wheel_keyb_rows.length;i++)
+					wheel_keyb_rows[i].style.visibility = "visible";
+				for(var i=0;i<robot_keyb_rows.length;i++)
+					robot_keyb_rows[i].style.visibility = "collapse";
+			}
+		} 
+		else {
+			for(var i=0;i<wheel_keyb_rows.length;i++)
+				wheel_keyb_rows[i].style.visibility = "collapse";
+			for(var i=0;i<robot_keyb_rows.length;i++)
+				robot_keyb_rows[i].style.visibility = "collapse";
+			if(document.getElementById("CONTROL_INPUT").value == 1){
+				for(var i=0;i<wheel_rows.length;i++)
+					wheel_rows[i].style.visibility = "collapse";
+				for(var i=0;i<robot_rows.length;i++)
+					robot_rows[i].style.visibility = "visible";
+			}
+			else{
+				for(var i=0;i<wheel_rows.length;i++)
+					wheel_rows[i].style.visibility = "visible";
+				for(var i=0;i<robot_rows.length;i++)
+					robot_rows[i].style.visibility = "collapse";
+			}
+		}
+	}
+	function SaveActiveModules(){
+		var formData = new FormData();
+		
+		if(document.getElementById("SERVO_ON").checked == true){formData.append("servo_on","1");}
+		else{formData.append("servo_on","0");}
+		
+		if(document.getElementById("SONAR_ON").checked == true){formData.append("sonar_on","1");}
+		else{formData.append("sonar_on","0");}
+		
+		if(document.getElementById("LASER_ON").checked == true){formData.append("laser_on","1");}
+		else{formData.append("laser_on","0");}
+		
+		if(document.getElementById("REFLECT_ON").checked == true){formData.append("reflect_on","1");}
+		else{formData.append("reflect_on","0");}
+		
+		if(document.getElementById("LIDAR_ON").checked == true){formData.append("lidar_on","1");}
+		else{formData.append("lidar_on","0");}
+		
+		if(document.getElementById("SCREEN_ON").checked == true){formData.append("screen_on","1");}
+		else{formData.append("screen_on","0");}
+		
+		if(document.getElementById("ROS_ON").checked == true){formData.append("ros_on","1");}
+		else{formData.append("ros_on","0");}
+		
+		var xhttp = new XMLHttpRequest();
+		xhttp.open("POST", "/save_active_modules", true);
+		xhttp.send(formData);
+		setTimeout('Restart()',500);
+	}
+	function SaveMotorEncoderSettings(){
+		var formData = new FormData();
+		var xhttp = new XMLHttpRequest();
+		
+		formData.append("control_input",document.getElementById("CONTROL_INPUT").value);
+		
+		if(document.getElementById("INVERT_LEFT_MOTOR").checked == true){formData.append("invert_left_motor","-1");}
+		else{formData.append("invert_left_motor","1");}
+		
+		if(document.getElementById("INVERT_RIGHT_MOTOR").checked == true){formData.append("invert_right_motor","-1");}
+		else{formData.append("invert_right_motor","1");}
+		
+		if(document.getElementById("INVERT_LEFT_ENCODER").checked == true){formData.append("invert_left_encoder","-1");}
+		else{formData.append("invert_left_encoder","1");}
+		
+		if(document.getElementById("INVERT_RIGHT_ENCODER").checked == true){formData.append("invert_right_encoder","-1");}
+		else{formData.append("invert_right_encoder","1");}
+		
+		xhttp.open("POST", "/save_motor_encoder_settings", true);
+		xhttp.send(formData);
+		setTimeout('Restart()',500);
+	}
+	function CalibrateLine() 
+	{
+		if(document.getElementById("calibrate_button").innerHTML == "Start Calibration")
+		  document.getElementById("calibrate_button").innerHTML = "Stop Calibration";
+		else
+		  document.getElementById("calibrate_button").innerHTML = "Start Calibration";
+		var xhttp = new XMLHttpRequest();
+		xhttp.open("POST", "/calibrate_line", true);
+		xhttp.send(null);
+	}
+	function ResetToDefaultConfig()
+	{
+		if(window.confirm("WARNING: This will erase all settings alerted since the last reset!")){
+			var xhttp = new XMLHttpRequest();
+			xhttp.open("POST", "/reset_config", true);
+			xhttp.send();
+			setTimeout('Restart()',500);
+		}
+	}
+	function SaveNetworkSettings(){
+		let password = window.prompt("WARNING: Updating the network settings will disconnect your device, and you will need to reconnect. Please enter the network password to continue:");
+		if(password === document.getElementById("NETWORK_PASSWORD").value){
+			var formData = new FormData();
+			var xhttp = new XMLHttpRequest();
+			
+			
+			formData.append("network_ssid",document.getElementById("NETWORK_SSID").value);
+			formData.append("network_password",document.getElementById("NETWORK_PASSWORD").value);
+			
+			xhttp.open("POST", "/save_network_settings", true);
+			xhttp.send(formData);
+			setTimeout('location.reload()',2000);
+		} else {
+			GetParameters();
+		}
+	}
+	function GetParameters() 
+	{
+		var request = new XMLHttpRequest();
+		request.onreadystatechange = function()
+		{
+			if (this.readyState == 4) {
+				if (this.status == 200) {
+					if (this.responseXML != null) 
+					{
+						if (this.responseXML.getElementsByTagName('servo_on')[0].childNodes[0].nodeValue == 1) {
+							document.getElementById("SERVO_ON").checked = true;
+						}else{document.getElementById("SERVO_ON").checked = false;}
+						
+						if (this.responseXML.getElementsByTagName('sonar_on')[0].childNodes[0].nodeValue == 1) {
+							document.getElementById("SONAR_ON").checked = true;
+						}else{document.getElementById("SONAR_ON").checked = false;}
+						
+						if (this.responseXML.getElementsByTagName('laser_on')[0].childNodes[0].nodeValue == 1) {
+							document.getElementById("LASER_ON").checked = true;
+						}else{document.getElementById("LASER_ON").checked = false;}
+						
+						if (this.responseXML.getElementsByTagName('reflect_on')[0].childNodes[0].nodeValue == 1) {
+							document.getElementById("REFLECT_ON").checked = true;
+						}else{document.getElementById("REFLECT_ON").checked = false;}
+						
+						if (this.responseXML.getElementsByTagName('lidar_on')[0].childNodes[0].nodeValue == 1) {
+							document.getElementById("LIDAR_ON").checked = true;
+						}else{document.getElementById("LIDAR_ON").checked = false;}
+						
+						if (this.responseXML.getElementsByTagName('screen_on')[0].childNodes[0].nodeValue == 1) {
+							document.getElementById("SCREEN_ON").checked = true;
+						}else{document.getElementById("SCREEN_ON").checked = false;}
+						
+						if (this.responseXML.getElementsByTagName('ros_on')[0].childNodes[0].nodeValue == 1) {
+							document.getElementById("ROS_ON").checked = true;
+						}else{document.getElementById("ROS_ON").checked = false;}
+						
+						document.getElementById("SET_SERVO_OFFSET").value = this.responseXML.getElementsByTagName('servo_offset')[0].childNodes[0].nodeValue; 
+						document.getElementById("CONTROL_INPUT").value = this.responseXML.getElementsByTagName('control_input')[0].childNodes[0].nodeValue; 
+						
+						if(document.getElementById("CONTROL_INPUT").value === "1"){
+							document.getElementById("VELOCITY_1").innerHTML = "Angular Velocity (m/s): ";
+							document.getElementById("VELOCITY_2").innerHTML = "Linear Velocity (rad/s): ";
+							document.getElementById("SET_VEL_LEFT").min = "-1";
+							document.getElementById("SET_VEL_LEFT").max = "1";
+							document.getElementById("SET_VEL_LEFT").step = "0.1";
+							document.getElementById("SET_VEL_RIGHT").min = "-2";
+							document.getElementById("SET_VEL_RIGHT").max = "2";
+							document.getElementById("SET_VEL_RIGHT").step = "0.1";
+							document.getElementById("CONTROLS_HEADER").innerHTML = "Robot Controls";
+							document.getElementById("CONTROL_INPUT_IMAGE_1").style.display = "block";
+							document.getElementById("CONTROL_INPUT_IMAGE_2").style.display = "none";
+							document.getElementById("CONTROL_INPUT_IMAGE_3").style.display = "none";
+						}
+						else if(document.getElementById("CONTROL_INPUT").value === "2"){
+							document.getElementById("VELOCITY_1").innerHTML = "Right Velocity (rad/s): ";
+							document.getElementById("VELOCITY_2").innerHTML = "Left Velocity (rad/s): ";
+							document.getElementById("SET_VEL_RIGHT").min = "-15";
+							document.getElementById("SET_VEL_RIGHT").max = "15";
+							document.getElementById("SET_VEL_RIGHT").step = "1";
+							document.getElementById("SET_VEL_LEFT").min = "-15";
+							document.getElementById("SET_VEL_LEFT").max = "15";
+							document.getElementById("SET_VEL_LEFT").step = "1";
+							document.getElementById("CONTROLS_HEADER").innerHTML = "Wheel Velocity Controls";
+							document.getElementById("CONTROL_INPUT_IMAGE_1").style.display = "none";
+							document.getElementById("CONTROL_INPUT_IMAGE_2").style.display = "block";
+							document.getElementById("CONTROL_INPUT_IMAGE_3").style.display = "none";
+						}	
+						else{
+							document.getElementById("VELOCITY_1").innerHTML = "Right PWM: ";
+							document.getElementById("VELOCITY_2").innerHTML = "Left PWM: ";
+							document.getElementById("SET_VEL_RIGHT").min = "-1";
+							document.getElementById("SET_VEL_RIGHT").max = "1";
+							document.getElementById("SET_VEL_RIGHT").step = "0.1";
+							document.getElementById("SET_VEL_LEFT").min = "-1";
+							document.getElementById("SET_VEL_LEFT").max = "1";
+							document.getElementById("SET_VEL_LEFT").step = "0.1";
+							document.getElementById("CONTROLS_HEADER").innerHTML = "Motor PWM Controls";
+							document.getElementById("CONTROL_INPUT_IMAGE_1").style.display = "none";
+							document.getElementById("CONTROL_INPUT_IMAGE_2").style.display = "none";
+							document.getElementById("CONTROL_INPUT_IMAGE_3").style.display = "block";
+						}
+						if (this.responseXML.getElementsByTagName('invert_right_motor')[0].childNodes[0].nodeValue == -1) {
+							document.getElementById("INVERT_RIGHT_MOTOR").checked = true;
+						}else{document.getElementById("INVERT_RIGHT_MOTOR").checked = false;}
+						
+						if (this.responseXML.getElementsByTagName('invert_right_encoder')[0].childNodes[0].nodeValue == -1) {
+							document.getElementById("INVERT_RIGHT_ENCODER").checked = true;
+						}else{document.getElementById("INVERT_RIGHT_ENCODER").checked = false;}
+						
+						if (this.responseXML.getElementsByTagName('invert_left_motor')[0].childNodes[0].nodeValue == -1) {
+							document.getElementById("INVERT_LEFT_MOTOR").checked = true;
+						}else{document.getElementById("INVERT_LEFT_MOTOR").checked = false;}
+						
+						if (this.responseXML.getElementsByTagName('invert_left_encoder')[0].childNodes[0].nodeValue == -1) {
+							document.getElementById("INVERT_LEFT_ENCODER").checked = true;
+						}else{document.getElementById("INVERT_LEFT_ENCODER").checked = false;}
+						document.getElementById("SET_VEL_LEFT").value = this.responseXML.getElementsByTagName('velocity')[0].childNodes[0].nodeValue;
+						document.getElementById("SET_VEL_RIGHT").value = this.responseXML.getElementsByTagName('velocity')[1].childNodes[0].nodeValue;
+						document.getElementById("NETWORK_SSID").value = this.responseXML.getElementsByTagName('network_ssid')[0].childNodes[0].nodeValue;
+						document.getElementById("NETWORK_PASSWORD").value = this.responseXML.getElementsByTagName('network_password')[0].childNodes[0].nodeValue;
+						if(this.responseXML.getElementsByTagName('config_fault')[0].childNodes[0].nodeValue == 1){
+							window.alert("WARNING: Syntax error detected in config, using default config");
+						}
+					}
+				}
+			}
+		}
+		request.open("GET", "/parameters", true);
+		request.send(null);
+		timer_dc = setTimeout('Disconnected()',5000);
+		GetInputs();
+		ShowHide();
+		UpdateKeyMap();
+		setTimeout('ShowHide()',1000); 
+	}
+	document.onkeydown = logKey;
+	document.onkeyup = keyRelease;
+	function keyRelease(e){
+		document.getElementById("KEY_W1").style.background = "#FFFFFF";
+		document.getElementById("KEY_A1").style.background = "#FFFFFF";
+		document.getElementById("KEY_S1").style.background = "#FFFFFF";
+		document.getElementById("KEY_W2").style.background = "#FFFFFF";
+		document.getElementById("KEY_A2").style.background = "#FFFFFF";
+		document.getElementById("KEY_S2").style.background = "#FFFFFF";
+		document.getElementById("KEY_D").style.background = "#FFFFFF";
+		document.getElementById("KEY_Q").style.background = "#FFFFFF";
+		document.getElementById("KEY_ESC1").style.background = "#FFFFFF";
+		document.getElementById("KEY_ESC2").style.background = "#FFFFFF";
+	}
+	function logKey(e) {
+		if(document.getElementById("ENABLE_KEYBOARD").checked == true){
+			if ( e.target.type == 'number' || e.target.type == 'text') return;
+			if(e.code === "KeyA"){
+				if(document.getElementById("CONTROL_INPUT").value == "1"){
+					document.getElementById("KEY_A1").style.background = "#008CBA";
+					document.getElementById("SET_VEL_RIGHT").stepUp();
+				}else{
+					document.getElementById("KEY_A2").style.background = "#008CBA";
+					document.getElementById("SET_VEL_LEFT").stepDown();
+				}
+				SetVelocities();
+			}
+			else if(e.code === "KeyD"){
+				document.getElementById("KEY_D").style.background = "#008CBA";
+				if(document.getElementById("CONTROL_INPUT").value == "1")
+					document.getElementById("SET_VEL_RIGHT").stepDown();
+				SetVelocities();
+			}
+			else if(e.code === "KeyW"){
+				
+				if(document.getElementById("CONTROL_INPUT").value == "1"){
+					document.getElementById("KEY_W1").style.background = "#008CBA";
+					document.getElementById("SET_VEL_LEFT").stepUp();
+				}
+				else{
+					document.getElementById("KEY_W2").style.background = "#008CBA";
+					document.getElementById("SET_VEL_RIGHT").stepUp();
+				}
+				SetVelocities();
+			}
+			else if(e.code === "KeyS"){
+				if(document.getElementById("CONTROL_INPUT").value == "1"){
+					document.getElementById("KEY_S1").style.background = "#008CBA";
+					document.getElementById("SET_VEL_LEFT").stepDown();
+				}
+				else{
+					document.getElementById("KEY_S2").style.background = "#008CBA";
+					document.getElementById("SET_VEL_RIGHT").stepDown();
+				}
+				SetVelocities();
+			}
+			else if(e.code === "KeyQ"){
+				document.getElementById("KEY_Q").style.background = "#008CBA";
+				if(document.getElementById("CONTROL_INPUT").value != "1")
+					document.getElementById("SET_VEL_LEFT").stepUp();
+			}
+		}
+		if(e.code === "Escape"){
+			document.getElementById("KEY_ESC1").style.background = "#008CBA";
+			document.getElementById("KEY_ESC2").style.background = "#008CBA";
+			document.getElementById("SET_VEL_LEFT").value = "0";
+			document.getElementById("SET_VEL_RIGHT").value = "0";
+			SetVelocities();
+		}
+		
+	}	
+	function VelocityKeyPressed(){
+		if(event.key === "Enter"){
+			SetVelocities();
+		}
+	}
+	function NetworkKeyPressed(){
+		if(event.key === "Enter"){
+			SaveNetworkSettings();
+		}
+	}
+	function Restart() 
+	{
+		clearTimeout(timer_inputs);
+		clearTimeout(timer_dc);
+		var xhttp = new XMLHttpRequest();
+		xhttp.open("POST", "/restart", true);
+		xhttp.send();
+		setTimeout('GetParameters()', 2000);
+		Disconnected();
+	}
+	function Connected(){
+		document.getElementById("loader").style.display = "none";
+	}
+	function Disconnected(){
+		document.getElementById("loader").style.display = "block";
+	}
+	function Stop(){
+		document.getElementById("SET_VEL_LEFT").value = "0";
+		document.getElementById("SET_VEL_RIGHT").value = "0";
+		SetVelocities();
+	}
+	function Left(){
+		document.getElementById("SET_VEL_RIGHT").stepUp();
+		SetVelocities();
+	}
+	function Right(){
+		document.getElementById("SET_VEL_RIGHT").stepDown();
+		SetVelocities();
+	}
+	function Up(){
+		document.getElementById("SET_VEL_LEFT").stepUp();
+		SetVelocities();
+	}
+	function Down(){
+		document.getElementById("SET_VEL_LEFT").stepDown();
+		SetVelocities();
+	}
+	function updateDivOrders(){
+		if(window.innerWidth < 1000){
+			document.getElementById("DIV_GAUGES").style.order = 1;
+		}else{
+			document.getElementById("DIV_GAUGES").style.order = 2;
+		}
+	}
+	function UpdateKeyMap(){
+		ShowHide();
+	}
+	window.onresize = updateDivOrders;
+</script></head>
+
+<body onload="GetParameters()">
+	<div class="loader"id="loader"></div>
+	<div class="flex-container">
+		<div  class="flex-child" style="order:0" align="center">
+			<input type="image" src="/restart.png" onclick="Restart()" style="width:40%;max-width:100px"/>
+			<h2> Restart Robot </h2>
+		</div>
+		<div  class="flex-child" style="order:0" align="center">
+			<h1 align="center">Robot Parameters</h1>
+			<p align="center"><a href="/config">Change Configuration</a></p>
+		</div>
+		<div class="flex-child" style="order:0" align="center">
+			<input type="image" src="/reset.png" onclick="ResetToDefaultConfig()" style="width:40%;max-width:100px"/>
+			<h2>Reset to Default Config</h2>
+		</div>
+		<div class="flex-child" align="center">
+			<table style="width:50%;max-width:300px" align="center">
+				<tr>
+					<th colspan="2" align="center"> Active Modules </th>
+				</tr>
+				<tr>
+					<td align="center"> Servo Motor </td>
+					<td align="center"><input type="checkbox" id="SERVO_ON"/></td>
+				</tr>
+				<tr>
+					<td align="center"> Time-of-flight: Sonar</td>
+					<td align="center"><input type="checkbox" id="SONAR_ON"/></td>
+				</tr>
+				<tr>
+					<td align="center"> Time-of-flight: Laser</td>
+					<td align="center"><input type="checkbox" id="LASER_ON"/></td>
+				</tr>
+				<tr>
+					<td align="center"> Reflectance Line Sensor</td>
+					<td align="center"><input type="checkbox" id="REFLECT_ON"/></td>
+				</tr>
+				<tr>
+					<td align="center"> LIDAR </td><td align="center">
+					<input type="checkbox" id="LIDAR_ON"/></td>
+				</tr>
+				<tr>
+					<td align="center"> Screen </td>
+					<td align="center"><input type="checkbox" id="SCREEN_ON"/></td>
+				</tr>
+				<tr>
+					<td align="center"> ROS </td>
+					<td align="center"><input type="checkbox" id="ROS_ON"/></td>
+				</tr>
+				<tr>
+					<td colspan="2" align="center">
+					<button onclick="SaveActiveModules()">Save</button>
+						<div class="tooltip">
+							<image src="question-mark.png" style="width:15px"/>
+							<span align="center" class="tooltiptext">Robot will restart</span>
+						</div>
+					</td>
+				</tr>
+			</table>
+			<br>
+			<table style="width:50%;max-width:300px" align="center">
+				<tr>
+					<th colspan="2" align="center"> Network Settings </th>
+				</tr>
+				<tr>
+					<td align="center">SSID:</td>
+					<td align="center"><input  id="NETWORK_SSID" type="text" value="puzzlebot" onkeydown="NetworkKeyPressed()"/></td>
+				</tr>
+				<tr>
+					<td align="center">Password:</td>
+					<td align="center"><input id="NETWORK_PASSWORD" type="text" value="Puzzlebot72" onkeydown="NetworkKeyPressed()"/></td>
+				</tr>
+				<tr>
+					<td colspan="2" align="center">
+						<button onclick="SaveNetworkSettings()">Save</button>
+						<div class="tooltip">
+							<image src="question-mark.png" style="width:15px"/>
+							<span align="center" class="tooltiptext">Robot will restart after the new network password is confirmed.</span>
+						</div>
+					</td>
+				</tr>
+			</table>
+			<br>
+		</div>
+		<div  class="flex-child" id="DIV_GAUGES" align="center">
+			<table align="center">
+				<tr><th colspan="2">Wheel Parameters</th></tr>
+				<tr>
+					<td align="center"><canvas id="an_gauge_1" data-title="Left Velocity" data-units="Velocity [rad/s]" width="300" height="300" data-major-ticks="-15 -12.5 -10 -7.5 -5 -2.5 0 2.5 5 7.5 10 12.5 15" data-type="canv-gauge" data-min-value="-15" data-max-value="15" data-highlights="-15 -12.5 #f33, -12.5 -10 #cc5, -10 10 #0BB950, 10 12.5 #cc5, 12.5 15 #f33" data-onready="setInterval( function() { Gauge.Collection.get('an_gauge_1').setValue(vel_left);}, 400);"></canvas></td>
+					<td align="center"><canvas id="an_gauge_2" data-title="Right Velocity" data-units="Velocity [rad/s]" width="300" height="300" data-major-ticks="-15 -12.5 -10 -7.5 -5 -2.5 0 2.5 5 7.5 10 12.5 15" data-type="canv-gauge" data-min-value="-15" data-max-value="15" data-highlights="-15 -12.5 #f33, -12.5 -10 #cc5, -10 10 #0BB950, 10 12.5 #cc5, 12.5 15 #f33" data-onready="setInterval( function() { Gauge.Collection.get('an_gauge_2').setValue(vel_right);}, 400);"></canvas></td>
+				</tr>
+				<tr>
+					<td align="center">
+						<p style="display:inline" id="VELOCITY_2">Left Velocity: </p>
+						<input type="number" id="SET_VEL_LEFT" min="-15" max="15" step="0.1" value="0" onkeydown="VelocityKeyPressed()"> 
+					</td>
+					<td align="center">
+						<p style="display:inline" id="VELOCITY_1">Right Velocity: </p>
+						<input type="number" id="SET_VEL_RIGHT" min="-15" max="15" step="0.1" value="0" onkeydown="VelocityKeyPressed()">
+					</td>
+				</tr>
+				<tr>
+					<td colspan="2" align="center"><button onclick="SetVelocities()">Submit</button></td>
+				</tr>
+			</table>
+			<br>
+		</div>
+
+		<div  class="flex-child" align="center">
+			<table align="center">
+				<tr><th colspan="3" align="center"> Motor-Encoder Settings </th></tr>
+				<tr>
+					<td align="center"> Control Mode 
+						<div class="tooltip">
+							<image src="question-mark.png" style="width:15px"/>
+							<span align="center" class="tooltiptext">
+								<image align="center" id="CONTROL_INPUT_IMAGE_1" src="puzzlebot.png" style="width:200px;display:none"/>
+								<image align="center" id="CONTROL_INPUT_IMAGE_2" src="puzzlebot_wheels_vel.png" style="width:200px;display:none"/>
+								<image align="center" id="CONTROL_INPUT_IMAGE_3" src="puzzlebot_pwms.png" style="width:200px;display:none"/>
+							</span>
+						</div>
+					</td>
+					<td colspan="2"><select name="control_input" id="CONTROL_INPUT">
+						<option hidden value="0">Default Value</option>
+						<option value="1">Robot Velocities (v and &omega;)</option>
+						<option value="2">Wheel Velicities (&omega;L and &omega;R)</option>
+						<option value="3">Motor PWMs</option>
+					</select>
+					</td>
+				</tr>
+				<tr>
+					<td align="center"> Invert Directions</td>
+					<td align="center">Left</td><td align="center">Right</td>
+				</tr>
+				<tr>
+					<td align="center"> Motors 
+						<div class="tooltip">
+							<image src="question-mark.png" style="width:15px"/>
+							<span align="center" class="tooltiptext">Changes the direction of rotation of the motor relative to the robot frame. </span>
+						</div>
+					</td>
+					<td align="center"><input type="checkbox" id="INVERT_LEFT_MOTOR"/></td>
+					<td align="center"><input type="checkbox" id="INVERT_RIGHT_MOTOR"/>
+				</tr>
+				<tr>
+					<td align="center"> Encoders 
+						<div class="tooltip">
+							<image src="question-mark.png" style="width:15px"/>
+							<span align="center" class="tooltiptext">Changes the sign of the encoder speed measurement. </span>
+						</div>
+					</td>
+					<td align="center"><input type="checkbox" id="INVERT_LEFT_ENCODER"/></td>
+					<td align="center"><input type="checkbox" id="INVERT_RIGHT_ENCODER"/>
+				</tr>
+				<tr>
+					<td colspan="3" align="center"><button onclick="SaveMotorEncoderSettings()">Save</button>
+						<div class="tooltip">
+							<image src="question-mark.png" style="width:15px"/>
+							<span align="center" class="tooltiptext">Robot will restart</span>
+						</div>
+					</td>
+				</tr>
+			</table>
+			<br>
+			<table align="center"style="min-width:300px">
+				<tr>
+					<th colspan="3" id="CONTROLS_HEADER" class="CONTROLS_HEADER" align="center">Robot Controls</th>
+				</tr>
+				<tr>
+					<td style="border:none;vertical-align:center" class="CONTROLS_HEADER" align="center">On-screen Controls</td>
+					<td style="border:none" class="CONTROLS_HEADER">
+						<label class="switch">
+							<input type="checkbox" id="ENABLE_KEYBOARD" onclick="UpdateKeyMap()"/>
+							<span class="slider round"></span>
+						</label>
+					</td>
+					<td class="CONTROLS_HEADER" style="border:none;vertical-align:center">Keyboard Controls</td>
+				</tr>
+			</table>
+			<table style="border:none">
+				<tr class="ROBOT_CONTROLS" align="center" style="visibility:collapse">
+					<td style="border:none;width:33.3%"/>
+					<td style="border:none;width:33.3%" class="button_cell" align="center"><input type="image" src="/arrow-up.png" onclick="Up()" style="width:50px"/></td>		
+					<td style="border:none;width:33.3%"/>
+				</tr>
+				<tr class="ROBOT_CONTROLS" align="center" style="visibility:collapse">
+					<td style="border:none;width:33.3%" class="button_cell" align="center"><input type="image" src="/arrow-left.png" onclick="Left()" style="width:50px"/></td>
+					<td style="border:none;width:33.3%" class="button_cell" align="center"><input type="image" src="/stop-sign.png" onclick="Stop()" style="width:50px"/></td>
+					<td style="border:none;width:33.3%" class="button_cell" align="center"><input type="image" src="/arrow-right.png" onclick="Right()" style="width:50px"/></td>
+				</tr>
+				<tr class="ROBOT_CONTROLS" align="center" style="visibility:collapse">
+					<td style="border:none;width:33.3%"/>
+					<td style="border:none;width:33.3%" class="button_cell" align="center"><input type="image" src="/arrow-down.png" onclick="Down()" style="width:50px"/></td>
+					<td style="border:none;width:33.3%"/>
+				</tr>
+				<tr class="WHEEL_CONTROLS" align="center" style="visibility:collapse">
+					<th style="border:none;width:33.3%;font-size: 2.5em" align="center">L</td>
+					<td class="button_cell" style="border:none;width:33.3%;font-size: 2.5em" align="center"><input type="image" src="/stop-sign.png" onclick="Stop()" style="width:50px"/></td>
+					<th style="border:none;width:33.3%;font-size: 2.5em" align="center">R</td>
+				</tr>
+				<tr class="WHEEL_CONTROLS" align="center" style="visibility:collapse">
+					<td class="button_cell" style="border:none;width:33.3%" align="center"><input type="image" src="/arrow-up.png" onclick="Up()" style="width:50px"/></td>
+					<th style="border:none;width:33.3%;font-size: 2.5em" align="center">+</td>
+					<td class="button_cell" style="border:none;width:33.3%" align="center"><input type="image" src="/arrow-up.png" onclick="Left()" style="width:50px"/></td>
+				</tr>
+				<tr class="WHEEL_CONTROLS" align="center" style="visibility:collapse">
+					<td class="button_cell" style="border:none;width:33.3%" align="center"><input type="image" src="/arrow-down.png" onclick="Down()" style="width:50px"/></td>
+					<th style="border:none;width:33.3%;font-size: 2.5em" align="center">-</td>
+					<td class="button_cell" style="border:none;width:33.3%" align="center"><input type="image" src="/arrow-down.png" onclick="Right()" style="width:50px"/></td>
+				</tr>
+				<tr class="WHEEL_KEYB_CONTROLS" align="center" style="visibility:collapse">
+					<th style="border:none;width:33.3%;font-size: 2.5em">L</th>
+					<td id="KEY_ESC2" style="border:none;width:33.3%"><image style="height:50px" src="stop_letters.png"/><image style="width:50px" src="keyboard_key_esc.png"/><image style="height:50px" src="stop_letters.png"/></td>
+					<th style="border:none;width:33.3%;font-size: 2.5em" align="center">R</th>
+				</tr>
+				<tr class="WHEEL_KEYB_CONTROLS" align="center" style="visibility:collapse">
+					<td id="KEY_Q" style="border:none;width:33.3%" align="center"><image style="width:50px" src="keyboard_key_q.png"/></td>
+					<th style="border:none;width:33.3%;font-size: 2.5em" align="center">+</td>
+					<td id="KEY_W2" style="border:none;width:33.3%" align="center"><image style="width:50px" src="keyboard_key_w.png"/></td>
+				</tr>
+				<tr class="WHEEL_KEYB_CONTROLS" align="center" style="visibility:collapse">
+					<td id="KEY_A2" style="border:none;width:33.3%" align="center"><image style="width:50px" src="keyboard_key_a.png"/></td>
+					<th style="border:none;width:33.3%;font-size: 2.5em" align="center">-</td>
+					<td id="KEY_S2" style="border:none;width:33.3%" align="center"><image style="width:50px" src="keyboard_key_s.png"/></td>
+				</tr>
+				<tr class="ROBOT_KEYB_CONTROLS" align="center" style="visibility:collapse">
+					<td style="border:none;width:33.3%"/>
+					<td id="KEY_W1" style="border:none;width:33.3%" align="center"><image style="width:50px" src="keyboard_key_w.png"/></td>
+					<td style="border:none;width:33.3%"/>
+				</tr>
+				<tr class="ROBOT_KEYB_CONTROLS" align="center" style="visibility:collapse">
+					<td id="KEY_A1" style="border:none;width:33.3%" align="center"><image style="width:50px" src="keyboard_key_a.png"/></td>
+					<td id="KEY_S1" style="border:none;width:33.3%" align="center"><image style="width:50px" src="keyboard_key_s.png"/></td>
+					<td id="KEY_D" style="border:none;width:33.3%" align="center"><image style="width:50px" src="keyboard_key_d.png"/></td>
+				</tr>
+				<tr class="ROBOT_KEYB_CONTROLS" align="center" style="visibility:collapse">
+					<td style="border:none;width:33.3%"/>
+					<td id="KEY_ESC1" style="border:none;width:33.3%"><image style="height:50px" src="stop_letters.png"/><image style="width:50px" src="keyboard_key_esc.png"/><image style="height:50px" src="stop_letters.png"/></td>
+					<td style="border:none;width:33.3%"/>
+				</tr>
+			</table>
+			<br>
+		</div>
+		<div  class="flex-child" align="center" id="SONAR_SERVO_TABLE" style="display:none">
+			<table align="center">
+				<tr><th colspan="2" align="center"> Sonar and Servo Parameters</th></tr>
+				<tr id="SERVO_TABLE" style="visibility:collapse">
+					<td>Servo Angle (deg)<input type="number" id="SET_SERVO_ANGLE" min="-90" max="90" step="1" value="0">&nbsp;&nbsp;<button onclick="SubmitServo()">Submit</button></td>
+					<td>Servo Offset <input type="number" id="SET_SERVO_OFFSET" min="-90" max="90" step="0.01" value="0">&nbsp;&nbsp;<button onclick="SaveServoOffset()">Save</button></td>
+				</tr>
+				<tr id="SONAR_TABLE" style="visibility:collapse">
+					<td colspan="2" align="center"><div id="sonar">Sonar Distance: 0 m</div></td>
+				</tr>
+				<tr id="LASER_TABLE" style="visibility:collapse">
+					<td colspan="2" align="center"><div id="laser">Laser Distance: 0 m</div></td>
+				</tr>
+			</table>
+			<br>
+		</div>
+		<div  class="flex-child" align="center" id="REFLECT_TABLE" style="display:none">
+			<table align="center">
+				<tr><th align="center"> Reflectance sensor</th></tr>
+				<tr>
+					<td align="center"><div id="min_values">Sensor Min Average: 0</div>&nbsp;&nbsp;<button id="calibrate_button" onclick="CalibrateLine()">Start Calibration</button></td>
+				</tr>
+				<tr>
+					<td align="center"><div id="line">Line Position: 0</div></td>
+				</tr>
+				<tr>
+					<td align="center"><div id="raw_values">Raw data: 0</div></td>
+				</tr>
+			</table>
+			<br>
+		</div>
+	</div>
+</body>
+</html>

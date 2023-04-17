@@ -27,8 +27,10 @@
 
 ---
 
-# User Manual
-* User Manual Files.
+# Puzzlebot: Assembly Manual
+
+* Assembly Manual Files.
+* Follow the steps on the video [here](https://www.youtube.com/watch?v=zHQCIMCRNPc) (Puzzlebot Jetson Edition)
    
 
 

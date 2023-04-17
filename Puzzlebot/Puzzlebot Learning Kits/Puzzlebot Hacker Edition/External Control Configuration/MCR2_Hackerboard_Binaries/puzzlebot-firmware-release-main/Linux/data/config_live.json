@@ -1,0 +1,155 @@
+{
+    "PidDt": 0.01,
+    "Robot": {
+        "Type": 1,
+        "ControlInput": 3,
+        "WheelBase": 0.91,
+        "WheelRadius": 0.0505,
+        "TopicVx": "VelocityLinearX",
+        "TopicVy": "VelocityLinearY",
+        "TopicW": "VelocityAngular"
+    },
+    "RightWheel": {
+        "Motor": {
+            "Pins": [
+                4,
+                15,
+                18
+            ],
+            "Sign": -1,
+            "Type": 2,
+            "Topic": "ControlR"
+        },
+        "Encoder": {
+            "Pins": [
+                36,
+                34
+            ],
+            "Sign": 1,
+            "Ticks": 48,
+            "Gear": 34,
+            "Type": 2,
+            "MeasureType": 1,
+            "Topic": "VelocityEncR"
+        },
+        "Pid": {
+            "Kp": 0.1,
+            "Ti": 0.05,
+            "Td": 0,
+            "DeadZone": 0.1,
+            "Topic": "VelocitySetR"
+        }
+    },
+    "LeftWheel": {
+        "Motor": {
+            "Pins": [
+                2,
+                13,
+                14
+            ],
+            "Sign": -1,
+            "Type": 2,
+            "Topic": "ControlL"
+        },
+        "Encoder": {
+            "Pins": [
+                39,
+                35
+            ],
+            "Sign": 1,
+            "Ticks": 48,
+            "Gear": 34,
+            "Type": 2,
+            "MeasureType": 1,
+            "Topic": "VelocityEncL"
+        },
+        "Pid": {
+            "Kp": 0.1,
+            "Ti": 0.05,
+            "Td": 0,
+            "DeadZone": 0.1,
+            "Topic": "VelocitySetL"
+        }
+    },
+    "Sonar": {
+        "Pins": 14,
+        "Topic": "SonarDistance"
+    },
+    "Laser": {
+        "SDA": 22,
+        "SCL": 21,
+        "Topic": "LaserDistance"
+    },
+    "Servo": {
+        "Pins": 5,
+        "Offset": 0,
+        "AngleMin": 30,
+        "AngleMax": 170,
+        "Topic": "ServoAngle"
+    },
+    "Reflectance": {
+        "NPins": 6,
+        "Pins": [
+            23,
+            22,
+            19,
+            27,
+            25,
+            32
+        ],
+        "EmitterPins": [
+            26,
+            33
+        ],
+        "EmitterSelect": 2,
+        "MinValues": [
+            600,
+            600,
+            600,
+            600,
+            600,
+            600
+        ],
+        "MinAvg": 2000,
+        "Threshold": 1.1,
+        "Topic": "LineSensor"
+    },
+    "Lidar": {
+        "SerialPins": [
+            33,
+            32
+        ],
+        "MotorPin": 26,
+        "ScanFrequency": 5,
+        "QualityThreshold": 10
+    },
+    "Network": {
+        "SSID": "sdf",
+        "Password": "asdf",
+        "IP": [
+            192,
+            168,
+            1,
+            1
+        ],
+        "RosIP": [
+            192,
+            168,
+            1,
+            2
+        ],
+        "PortWeb": 80,
+        "PortData": 3141,
+        "WiFiPower": 78,
+        "WebPage": "puzzlebot"
+    },
+    "ActiveModules": {
+        "Servo": 0,
+        "Sonar": 0,
+        "Laser": 0,
+        "Reflect": 0,
+        "Lidar": 0,
+        "Screen": 1,
+        "Ros": 0
+    }
+}

@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+<style>
+textarea {
+  white-space: pre;
+  overflow-wrap: normal;
+  overflow-x: scroll;
+}
+/* Set additional styling options for the columns*/
+.flex-container{
+	display:flex;
+	flex-flow: row wrap;
+	justify-content: center;
+	align-items: top;
+}
+.flex-child{
+	flex: 1 0 26%;
+	order: 2;
+	margin: 5px;
+}
+#loader {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  z-index: 1;
+  width: 120px;
+  height: 120px;
+  margin: -76px 0 0 -76px;
+  border: 16px solid #f3f3f3;
+  border-radius: 50%;
+  border-top: 16px solid #3498db;
+  -webkit-animation: spin 2s linear infinite;
+  animation: spin 2s linear infinite;
+}
+
+@-webkit-keyframes spin {
+  0% { -webkit-transform: rotate(0deg); }
+  100% { -webkit-transform: rotate(360deg); }
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+</style>
+
+<script type="text/javascript">
+var timer_dc, timer_check;
+function LoadFile() 
+{
+  var xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function() 
+  {
+    if (this.readyState == 4 && this.status == 200) 
+    {
+      document.getElementById("edit").value = this.responseText;
+    }
+  }
+  xhttp.open("GET", "config_live.json", true);
+  xhttp.send();
+  timer_dc = setTimeout('Disconnected()',5000);
+  CheckConnection();
+  CheckConfig();
+}
+
+function SaveFile() 
+{
+  var formData = new FormData();
+  formData.append("file",document.getElementById("edit").value);
+
+  var xhttp = new XMLHttpRequest();
+  xhttp.open("POST", "/config", true);
+  xhttp.send(formData);
+  setTimeout('Restart()',500);
+}
+function CheckConfig(){
+	var request = new XMLHttpRequest();
+	request.onreadystatechange = function()
+	{
+		if (this.readyState == 4) {
+			if (this.status == 200) {
+				if (this.responseXML != null) 
+				{
+					if(this.responseXML.getElementsByTagName('config_fault')[0].childNodes[0].nodeValue == 1){
+						window.alert("WARNING: Syntax error detected in config, using default config");
+					}
+				}
+			}
+		}
+	}
+	request.open("GET", "/parameters", true);
+	request.send(null);
+}
+
+function Restart() 
+{
+	clearTimeout(timer_check);
+	clearTimeout(timer_dc);
+	var xhttp = new XMLHttpRequest();
+	xhttp.open("POST", "/restart", true);
+	xhttp.send();
+	setTimeout('LoadFile()', 2000);
+	Disconnected();
+}
+ function CheckConnection()
+{
+	var request = new XMLHttpRequest();
+	request.onreadystatechange = function()
+	{
+		if (this.readyState == 4) 
+		{
+			if (this.status == 200) 
+			{
+				if (this.responseXML != null) 
+				{
+					Connected();
+					clearTimeout(timer_dc);
+					timer_dc = setTimeout('Disconnected()',5000);
+				}
+			}
+		}
+	}
+	request.open("GET", "/velocity", true);
+	request.send(null);
+	timer_check = setTimeout('CheckConnection()', 500);          
+}
+
+function Connected(){
+	document.getElementById("loader").style.display = "none";
+}
+function Disconnected(){
+	document.getElementById("loader").style.display = "block";
+}
+</script>
+</head>
+<body onload="LoadFile()">
+<div class="loader"id="loader"></div>
+<div class="flex-container">
+	<div class="flex-child">
+		<h2>Configuration parameters for the robot ("config_live.json" file) </h2>
+		<p><a href="/">Home</a></p>
+
+		<button onclick="SaveFile()">Upload to robot</button>&nbsp;&nbsp;
+		<br><br>
+		<textarea rows="120" cols="120" id="edit" wrap="soft"></textarea>
+
+		<br>
+	</div>
+	<div class="flex-child">
+<h2>Config file guide</h2>
+<ul>
+	<li>PidDt [Pid controller loop sampling time (Float,seconds)]</li>
+	<li>Robot [Main parameters for the robot]</li>
+	<ul>
+		<li>Type [1-differential drive robot; 2-holonomic robot]</li>
+		<li>ControlInput [1-robot linear and angular velocities; 2-wheel angular velocities setpoints; 3-wheel pwm voltage signals]</li>
+		<li>WheelBase [The robot width (Float,metres)]</li>
+		<li>WheelRadius [Wheel radius (Float,metres)]</li>
+		<li>TopicVx [Topic for receiving linear velocity of the robot (String)]</li>
+		<li>TopicVy [Topic for receiving linear velocity of the robot on Y (String)]</li>
+		<li>TopicW [Topic for receiving angular velocity of the robot (String)]</li>
+	</ul>
+	<li>RightWheel [Parameters for the right wheel]</li>
+	<ul>
+		<li>Motor [Right motor parameters]</li>
+		<ul>
+			<li>Pins [Motor driver pins (3 GPIO Pins)]</li>
+			<li>Sign [Motor direction setting (1/-1)]</li>
+			<li>Type [Motor type. 1-brushless; 2-brushed]</li>
+			<li>Topic [Topic for receiving control pwm (String)]</li>
+		</ul>
+		<li>Encoder [Right encoder parameters]</li>
+		<ul>
+			<li>Pins [Encoder pins] (2 GPIO Pins)</li>
+			<li>Sign [Encoder direction setting (-1/1)]</li>
+			<li>Ticks [Encoder number of ticks for one rotation(Int)]</li>
+			<li>Gear [Gear ratio(Int)]</li>
+			<li>Type [Encoder type. 1-single pulse(no direction); 2-double pulse(with direction)]</li>
+			<li>MeasureType [Encoder velocity measurement type. 1-count pulses; 2-measure pulse duration]</li>
+			<li>Topic [Encoder velocity publish topic(String)]</li>
+		</ul>
+		<li>Pid [Right Pid controller parameters]</li>
+		<ul>
+			<li>Kp [Proportional gain(Float)]</li>
+			<li>Ti [Integration time(Float)]</li>
+			<li>Td [Derivation time(Float)]</li>
+			<li>DeadZone [Motor control dead zone(Float)]</li>
+			<li>Topic [Topic for receiving velocity setpoint(String)]</li>
+		</ul>
+	</ul>
+	<li>LeftWheel [Parameters for the left wheel]</li>
+	<ul>
+		<li>Motor [Right motor parameters]</li>
+		<ul>
+			<li>Pins [Motor driver pins (3 GPIO Pins)]</li>
+			<li>Sign [Motor direction setting (1/-1)]</li>
+			<li>Type [Motor type. 1-brushless; 2-brushed]</li>
+			<li>Topic [Topic for receiving control pwm (String)]</li>
+		</ul>
+		<li>Encoder [Right encoder parameters]</li>
+		<ul>
+			<li>Pins [Encoder pins] (2 GPIO Pins)</li>
+			<li>Sign [Encoder direction setting (-1/1)]</li>
+			<li>Ticks [Encoder number of ticks for one rotation(Int)]</li>
+			<li>Gear [Gear ratio(Int)]</li>
+			<li>Type [Encoder type. 1-single pulse(no direction); 2-double pulse(with direction)]</li>
+			<li>MeasureType [Encoder velocity measurement type. 1-count pulses; 2-measure pulse duration]</li>
+			<li>Topic [Encoder velocity publish topic(String)]</li>
+		</ul>
+		<li>Pid [Right Pid controller parameters]</li>
+		<ul>
+			<li>Kp [Proportional gain(Float)]</li>
+			<li>Ti [Integration time(Float)]</li>
+			<li>Td [Derivation time(Float)]</li>
+			<li>DeadZone [Motor control dead zone(Float)]</li>
+			<li>Topic [Topic for receiving velocity setpoint(String)]</li>
+		</ul>
+	</ul>
+	<li> Sonar [Parameters for sonar]</li>
+	<ul>
+		<li>Pins [Sonar pins(2 GPIO Pins)]</li>
+		<li>Topic [Topic for publishing sonar measured distance(String)]</li>
+	</ul>
+	<li>Servo [Parameters for servo motor]</li>
+	<ul>
+		<li>Pins [Servo motor pin (1 GPIO pin)]</li>
+		<li>Offset [Servo motor center offset(Int,degrees)]</li>
+		<li>AngleMin [Servo motor min angle (Int,degrees)]</li>
+		<li>AngleMax [Servo motor max angle (Int,degrees)]</li>
+		<li>Topic [Topic for receiving servo motor angle (degrees)]</li>
+	</ul>
+	<li>Reflectance [Parameters for reflectance sensor]</li>
+	<ul>
+		<li>NPins [Number of pins (Int,number of light sensors used)]</li>
+		<li>Pins [Reflectance pins(6 GPIO Pins)]</li>
+		<li>EmitterPins [Emitter pins (for selecting even/odd lights on/off, 2 GPIO Pins)]</li>
+		<li>EmitterSelect [Emitter selector. 1-even; 2-odd; 3-all]</li>
+		<li>MinValues [Minimal reflectance values measured during calibration (6 Ints)]</li>
+		<li>MinAvg [Minimal reflectance average value measured during calibration (Int)]</li>
+		<li>Threshold [Line detection treshold (Float)]</li>
+		<li>Topic [Topic for publishing line position relative to the sensor (String)]</li>
+	</ul>
+	<li>Lidar [Parameters for lidar sensor]</li>
+	<ul>
+		<li>SerialPins [Serial interface pins (2 GPIO Pins)]</li>
+		<li>MotorPin [Lidar motor pins (1 GPIO Pin)]</li>
+		<li>ScanFrequency [Lidar scan frequency (Float:1.4-7.4, Hz)]</li>
+		<li>QualityThreshold [Measurement reject quality threshold (Int:0-60, higher quality is better)]</li>
+	</ul>
+	<li>Network [Network parameters]</li>
+	<ul>
+		<li>SSID [Access point ssid (String)]</li>
+		<li>Password [Access point password (String)]</li>
+		<li>IP [Access point IP (4 Ints)]</li>
+		<li>RosIP [Ros master IP (4 Ints)]</li>
+		<li>PortWeb [Port for the web server (Int)]</li>
+		<li>PortData [Port for data communication server (Int)]</li>
+		<li>WiFiPower [Wifi transmitter power (Int:0-78)]</li>
+		<li>WebPage [Domain name for the webpage (String)]</li>
+	</ul>
+	<li>ActiveModules [Active modules settings]</li>
+	<ul>
+		<li>Servo [Servo motor on/off (1/0)]</li>
+		<li>Sonar [Sonar on/off (1/0)]</li>
+		<li>Laser [Laser on/off (1/0)]</li>
+		<li>Reflect [Reflectance sensorr on/off (1/0)]</li>
+		<li>Lidar [Lidar on/off (1/0)]</li>
+		<li>Screen [Screen on/off (1/0)]</li>
+		<li>Ros [Ros communication on/off (1/0)]</li>
+	</ul>
+</ul>
+	</div>
+</div>
+</body>
+</html>

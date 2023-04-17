@@ -86,7 +86,7 @@ At Manchester Robotics we firmly believe that innovation is driven by change, an
 So, from all the team at MCR2 we would like to say 
 
                                                                   Thank you!
-  
+                                                          {Learn, Create, Innovate};
 
   
   

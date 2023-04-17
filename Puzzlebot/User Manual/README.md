@@ -30,6 +30,9 @@
 # User Manual
 * User Manual Files.
    
+---
+
+                                                            {Learn, Create, Innovate};
 
 
 

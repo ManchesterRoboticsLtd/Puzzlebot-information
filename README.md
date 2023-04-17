@@ -1,7 +1,10 @@
+
+---
+
 <picture>
-  <source media="(prefers-color-scheme: dark)" srcset="https://github.com/ManchesterRoboticsLtd/Puzzlebot/blob/main/Misc/Logos/Logotipo%20Vertical%20Bco_Transparente.png">
-  <source media="(prefers-color-scheme: light)" srcset="https://github.com/ManchesterRoboticsLtd/Puzzlebot/blob/main/Misc/Logos/Logotipo%20Vertical%20Azul%20transparente.png">
-  <img alt="Shows ITESM logo in black or white." width="160" align="right">
+  <source media="(prefers-color-scheme: dark)" srcset="https://github.com/ManchesterRoboticsLtd/Puzzlebot/blob/main/Misc/Logos/NVIDIA_logo_BL.jpg">
+  <source media="(prefers-color-scheme: light)" srcset="https://github.com/ManchesterRoboticsLtd/Puzzlebot/blob/main/Misc/Logos/NVIDIA_logo_WL.jpg">
+  <img alt="Shows Puzzlebot logo in black or white." width="170" align="right">
 </picture>
 
 <picture>
@@ -10,8 +13,28 @@
   <img alt="Shows MCR2 logo in black or white." width="150" align="right">
 </picture>
 
+
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="https://github.com/ManchesterRoboticsLtd/Puzzlebot/blob/main/Misc/Logos/MCR2_Logo_White.png">
+  <source media="(prefers-color-scheme: light)" srcset="https://github.com/ManchesterRoboticsLtd/Puzzlebot/blob/main/Misc/Logos/Puzzle_Bot_Logo_B.png">
+  <img alt="Shows MCR2 logo in black or white." width="250" align="left">
+</picture>
+
+
+
+<br/><br/>
+<br/><br/>
+
 ---
 
+# Introduction
+   * This repository, contains all the files required to operate the Puzzlebot.
+   
+## General Information
 
-# Puzzlebot
-This repository contains all the files required for the Puzzlebot
+## Recordings
+     
+## General Requirements
+
+
+

@@ -57,27 +57,39 @@ Puzzlebot, is powered by the *Hackerboard* for algorithms which require real-tim
    
 ## Configurations
   * The Puzzlebot can be used in differen configuration according to the user requirments.
-
-### Standalone configuration
+ <br/><br/>
 
 <picture>
   <source srcset="https://user-images.githubusercontent.com/67285979/232495809-decedd1e-ce71-4ef1-8145-8fd46377d412.png">
   <img alt="Shows Puzzlebot views in black or white." width="450" align="left">
 </picture>
 
+### Standalone configuration
   * The most basic configuration.
   * The user directly programs the Hackerbard using the Arduino IDE.
   * Libraries for control and communication with computing units, sensors, and actuators are provided by MCR2.
   * 3rd Party peripherals can be attached.
   * The user can develop low level control libraries, using MCR2 libraries or add/develop its own libraries.
   
-  <br/><br/>  
-  
- # Instructions
+#### Instructions
   * To use the Puzzlebot in this configuration, follow the instructions on how to Download and install the Arduino IDE [here]()
   * Download and configure the drivers for the ESP32 microcontroller [here]()
   * Download the MCR2 Puzzlebot Libraries [here]()
   * Look at the examples provided in the libraries [here]()
+ 
+  <br/><br/>
+  
+<picture>
+  <source srcset="https://user-images.githubusercontent.com/67285979/232502452-9d5edf07-9c88-4c72-926e-f2e51d8dfa11.png">
+  <img alt="Shows Puzzlebot views in black or white." width="650" align="right">
+</picture>
+
+### External Control Configuration
+* The robot is controlled from an external computer via Wi-Fi or Serial Communication.
+* The internal firmware and libraries for communicating with the robot, its sensors and actuators are provided by MCR2.
+* Basic web interface for configuring and testing provided.
+* MATLAB and LabVIEW libraries for communicating with the robot are provided by MCR2.
+* MATLAB and LabVIEW simulator are provided. No extra libraries for required working.
 
 
 

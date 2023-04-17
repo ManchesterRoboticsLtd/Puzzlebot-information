@@ -27,25 +27,20 @@
 
 ---
 
-# Introduction
+# Puzzlebot Learning Kits
 
-WELCOME TO PUZZLEBOT! BEFORE YOU START MAKING ROBOTICS, YOU’LL NEED TO KNOW SOME BASIC FUNCTIONALITIES OF THE ROBOT.
+This repository contains all the information regardign all the Learning Kits from Manchester Robotics, as well as other products related to the Puzzlebot (Hackerboard, Datasheets, etc.). 
+This repository is mantained by MCR2 and its partenrs.
 
-* Puzzlebot by Manchester Robotics is a platform for robotics and control systems development and education.
+## Puzzlebot Learning Kits
+  * Puzzlebot Hacker Edition    
+  * Puzzlebot Laser Edition  
+  * Puzzlebot NVIDIA Jetson Edition
+  * Puzzlebot NVIDIA Jetson LiDAR Edition
+ 
+---
 
-* Unlike other products, Puzzlebot has sufficient processing capacity to handle multiple advanced add-on components (e.g. different actuators and sensors such as sonar LiDAR, and line following sensors).
-
-* Allows customers to use a consistent platform for their entire robotics learning journey from starter kit tutorials all the way to professional prototyping.
-
-* The “brain” of Puzzlebot is the Hackerboard. The board acts as a robust computational node for Starter Kit components (e.g. motors) and a communication interface to external computing units (laptops, phones, NVIDIA Jetson Nano, etc.).
-
-   
-## General Information
-  * The Puzzlebot Starter Kit contains all the essential components needed to quickly access meaningful robotics capabilities (i.e. a programmable, roaming robot)and       provides a user-friendly platform for incorporating a wide range of advanced add-on feature sets.
-
-## Recordings
-     
-## General Requirements
+                                                            {Learn, Create, Innovate};
 
 
 

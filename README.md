@@ -54,7 +54,7 @@
 WELCOME TO PUZZLEBOT! BEFORE YOU START MAKING ROBOTICS, YOU’LL NEED TO KNOW SOME BASIC FUNCTIONALITIES OF THE ROBOT.
 
 <picture>
-  <source srcset="https://user-images.githubusercontent.com/67285979/232486583-00aa7c19-8d00-45bd-9055-226d13b40b01.png">
+  <source srcset="https://github.com/ManchesterRoboticsLtd/Puzzlebot/blob/main/Misc/Figures/puzzlebot_views.jpg">
   <img alt="Shows Puzzlebot views in black or white." width="500" align="right">
 </picture>
 
@@ -86,7 +86,7 @@ At Manchester Robotics we firmly believe that innovation is driven by change, an
 So, from all the team at MCR2 we would like to say 
 
                                                                   Thank you!
-  
+                                                          {Learn, Create, Innovate};
 
   
   

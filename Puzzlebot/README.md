@@ -32,11 +32,15 @@
 This repository contains all the information regardign all the Learning Kits from Manchester Robotics, as well as other products related to the Puzzlebot (Hackerboard, Datasheets, etc.). 
 This repository is mantained by MCR2 and its partenrs.
 
-## Puzzlebot Learning Kits
-  * Puzzlebot Hacker Edition    
-  * Puzzlebot Laser Edition  
-  * Puzzlebot NVIDIA Jetson Edition
-  * Puzzlebot NVIDIA Jetson LiDAR Edition
+## Folders
+  * User Manual - Contains the general user manual of the Puzzlebot.
+  * Assembly manual - Contains the General Assembly Manual of the Puzzlebot.
+  * Hackerboard - Contains the files for the Puzzlebot "brain" the *Hackerboard*
+  * Puzzlebot Learning Kits - Contains the files for the different Learning Kits
+    * Puzzlebot Hacker Edition    
+    * Puzzlebot Laser Edition  
+    * Puzzlebot NVIDIA Jetson Edition
+    * Puzzlebot NVIDIA Jetson LiDAR Edition
  
 ---
 

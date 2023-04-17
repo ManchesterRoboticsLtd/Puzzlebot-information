@@ -89,7 +89,9 @@ Puzzlebot, is powered by the *Hackerboard* for algorithms which require real-tim
 * The internal firmware and libraries for communicating with the robot, its sensors and actuators are provided by MCR2.
 * Basic web interface for configuring and testing provided.
 * MATLAB and LabVIEW libraries for communicating with the robot are provided by MCR2.
-* MATLAB and LabVIEW simulator are provided. No extra libraries for required working.
+* MATLAB and LabVIEW simulator are provided. No extra libraries for required.
+
+### Instructions
 
 
 

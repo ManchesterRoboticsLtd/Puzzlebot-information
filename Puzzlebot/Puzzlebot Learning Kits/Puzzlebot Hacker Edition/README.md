@@ -56,26 +56,11 @@ Puzzlebot, is powered by the *Hackerboard* for algorithms which require real-tim
 </picture>
    
 ## Configurations
-  * The Puzzlebot can be used in differen configuration according to the user requirments.
- <br/><br/>
+  * The Puzzlebot Hacker Edition, can be used in differen configuration according to the user requirments.
+     * Puzzlebot Standalone Configuration
+     * Puzzlebot External Control Configuration
 
 
- 
-  <br/><br/>
-  
-<picture>
-  <source srcset="https://user-images.githubusercontent.com/67285979/232502452-9d5edf07-9c88-4c72-926e-f2e51d8dfa11.png">
-  <img alt="Shows Puzzlebot views in black or white." width="650" align="right">
-</picture>
-
-### External Control Configuration
-* The robot is controlled from an external computer via Wi-Fi or Serial Communication.
-* The internal firmware and libraries for communicating with the robot, its sensors and actuators are provided by MCR2.
-* Basic web interface for configuring and testing provided.
-* MATLAB and LabVIEW libraries for communicating with the robot are provided by MCR2.
-* MATLAB and LabVIEW simulator are provided. No extra libraries for required.
-
-### Instructions
 
 
 

@@ -3,7 +3,6 @@
     "Robot": {
         "Type": 1,
         "ControlInput": 3,
-        "WheelBase": 0.91,
         "WheelBase": 0.19,
         "WheelRadius": 0.0505,
         "TopicVx": "VelocityLinearX",

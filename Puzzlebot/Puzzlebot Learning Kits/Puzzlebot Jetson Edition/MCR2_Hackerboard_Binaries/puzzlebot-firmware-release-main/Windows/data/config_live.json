@@ -3,7 +3,7 @@
     "Robot": {
         "Type": 1,
         "ControlInput": 3,
-        "WheelBase": 0.91,
+        "WheelBase": 0.19,
         "WheelRadius": 0.0505,
         "TopicVx": "VelocityLinearX",
         "TopicVy": "VelocityLinearY",
@@ -124,13 +124,13 @@
         "QualityThreshold": 10
     },
     "Network": {
-        "SSID": "dsfha",
-        "Password": "asdf",
+        "SSID": "Puzzlebot",
+        "Password": "Puzzlebot72",
         "IP": [
             192,
             168,
             1,
-            1
+            8
         ],
         "RosIP": [
             192,
